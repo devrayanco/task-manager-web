@@ -1,73 +1,103 @@
-# React + TypeScript + Vite
+# 🖥️ Interface Web - Gerenciador de Tarefas (React + TS + Kanban)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este projeto é a interface web (frontend) para o [Desafio Técnico - API de Gerenciamento de Tarefas](https://github.com/devrayanco/TaskManagerApi).
 
-Currently, two official plugins are available:
+A aplicação foi desenvolvida em **React** com **TypeScript** (utilizando Vite) e implementa um sistema completo de gestão de tarefas em formato de quadro **Kanban** (estilo Trello), consumindo a API .NET.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✅ Funcionalidades
 
-## React Compiler
+- **Autenticação:** Sistema de Login e Registo (Cadastro) de utilizadores.
+- **Proteção de Rotas:** Utilizadores não autenticados são redirecionados para `/login`.
+- **Gestão de Sessão:** O token JWT é armazenado no `localStorage` e gerido globalmente via `AuthContext`.
+- **Quadro Kanban:** Visualização das tarefas nas colunas "A Fazer", "Em Andamento" e "Concluído".
+- **Arrastar e Soltar (Drag-and-Drop):** Mova tarefas entre as colunas para atualizar o seu status.
+- **CRUD Completo de Tarefas:**
+    - **Criar:** Adicionar novas tarefas (surgem em "A Fazer").
+    - **Editar:** Editar o título de uma tarefa (clique duplo ou botão "Editar").
+    - **Excluir:** Remover tarefas.
+- **Logout:** Botão para limpar a sessão e deslogar.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🌟 Diferenciais Implementados
 
-## Expanding the ESLint configuration
+Este projeto atende aos seguintes requisitos diferenciais do desafio:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Uso de TypeScript:** Todo o projeto é tipado.
+- **Framework JS (React):** Utilização de React com hooks modernos.
+- **Interceptor Axios:** Um interceptor de `axios` é configurado para anexar automaticamente o token JWT (`Authorization: Bearer ...`) a todos os pedidos para a API.
+- **Armazenamento de Token:** O token é persistido no `localStorage`.
+- **Interface Kanban:** O requisito de "interface simples" foi expandido para um quadro Kanban completo com drag-and-drop.
+- **Biblioteca de Ícones:** `react-icons` para uma UI mais polida.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🧱 Estrutura de Pastas
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+/task-manager-web 
+├── public/ 
+├── src/ 
+│ ├── components/ 
+│ │ ├── CreateTaskForm.tsx # Formulário de criação de tarefa 
+│ │ ├── KanbanBoard.tsx # O quadro (DragDropContext) 
+│ │ ├── KanbanColumn.tsx # Uma coluna (Droppable) 
+│ │ ├── ProtectedRoute.tsx # Wrapper de rota protegida 
+│ │ └── TaskCard.tsx # O card da tarefa (Draggable) 
+│ ├── contexts/ 
+│ │ └── AuthContext.tsx # Estado global de autenticação 
+│ ├── interfaces/ 
+│ │ └── task.interface.ts # Tipagem da Tarefa 
+│ ├── pages/ 
+│ │ ├── LoginPage.tsx # Página de Login 
+│ │ ├── RegisterPage.tsx # Página de Registo 
+│ │ └── TasksPage.tsx # Página principal (Contêiner do Kanban) 
+│ ├── services/ 
+│ │ └── api.ts # Configuração do Axios (BaseURL e Interceptor) 
+│ ├── App.tsx # Definição das Rotas 
+│ ├── index.css # Estilos globais 
+│ └── main.tsx # Ponto de entrada (Render) 
+├── package.json 
+└── README.md
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🛠️ Tecnologias Utilizadas
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **React 19**
+- **Vite** (Build tool)
+- **TypeScript**
+- **React Router** (`react-router-dom`)
+- **Axios** (para chamadas de API, com interceptores)
+- **@hello-pangea/dnd** (Kanban)
+- **React Icons** (Biblioteca de ícones)
+- **CSS** (Puro, com `index.css` global)
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 📦 Instalação e Execução
+
+### Pré-requisito
+
+**O Backend (API) deve estar em execução.** Por favor, siga as instruções de instalação do [repositório da API](https://github.com/devrayanco/TaskManagerApi).
+
+---
+
+1.  **Clone o repositório**
+    ```bash
+    git clone https://github.com/devrayanco/task-manager-web.git
+    cd task-manager-web
+    ```
+
+2.  **Instale as dependências**
+    ```bash
+    npm install
+    ```
+
+3.  **Configure o URL da API**
+    * Abra o ficheiro `src/services/api.ts`.
+    * Altere o `API_URL` para apontar para o URL `https` do seu backend (ex: o URL do Swagger sem o `/swagger`).
+
+    ```typescript
+    const API_URL = 'https://localhost:7252/api';
+    ```
+
+4.  **Execute o projeto de desenvolvimento**
+    ```bash
+    npm run dev
+    ```
+
+5.  **Acesse a aplicação**
+    * O Vite irá disponibilizar a aplicação em `http://localhost:5173`.
