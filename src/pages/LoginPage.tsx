@@ -3,6 +3,8 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import api from '../services/api';
 import { AxiosError } from 'axios';
+import { FiLogIn } from 'react-icons/fi';
+
 
 interface LoginResponse {
   token: string;
@@ -69,8 +71,9 @@ const LoginPage: React.FC = () => {
         <button
           type="submit"
           disabled={isLoading}
-          className="btn btn-primary" // Classe do botão
+          className="btn btn-main"
         >
+          <FiLogIn />
           {isLoading ? 'Entrando...' : 'Entrar'}
         </button>
 

@@ -1,12 +1,13 @@
-// src/components/TaskCard.tsx
 import React, { useState } from 'react';
 import { Draggable } from '@hello-pangea/dnd';
 import type { Task } from '../interfaces/task.interface';
 import api from '../services/api';
+import { FiEdit2, FiTrash2 } from 'react-icons/fi';
+
 
 interface TaskCardProps {
   task: Task;
-  index: number; // Posição na coluna (requerido pelo Draggable)
+  index: number;
   onTaskDeleted: (taskId: number) => void;
   onTaskUpdated: (updatedTask: Task) => void;
 }
@@ -17,7 +18,6 @@ const TaskCard: React.FC<TaskCardProps> = ({ task, index, onTaskDeleted, onTaskU
   const [isMutating, setIsMutating] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Salvar a edição do título
   const handleSaveTitle = async () => {
     if (!editingTitle.trim()) {
       setError("O título não pode ser vazio.");
@@ -93,17 +93,19 @@ const TaskCard: React.FC<TaskCardProps> = ({ task, index, onTaskDeleted, onTaskU
               <div className="card-actions">
                 <button
                   onClick={() => setIsEditing(true)}
-                  className="btn btn-sm btn-warning"
+                  className="btn btn-sm btn-success"
                   disabled={isMutating}
+                  title="Editar"
                 >
-                  Editar
+                  <FiEdit2 />
                 </button>
                 <button
                   onClick={handleDelete}
                   className="btn btn-sm btn-danger"
                   disabled={isMutating}
+                  title="Excluir"
                 >
-                  Excluir
+                  <FiTrash2 />                  
                 </button>
               </div>
             </>

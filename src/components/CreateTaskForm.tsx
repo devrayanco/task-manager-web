@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import api from '../services/api';
 import type { Task } from '../interfaces/task.interface';
+import { FiPlus } from 'react-icons/fi';
+
 
 interface CreateTaskFormProps {
   onTaskCreated: (newTask: Task) => void;
@@ -45,8 +47,9 @@ const CreateTaskForm: React.FC<CreateTaskFormProps> = ({ onTaskCreated }) => {
         <button
           type="submit"
           disabled={isCreating}
-          className="btn btn-primary"
+          className="btn btn-main"
         >
+          <FiPlus />
           {isCreating ? 'Adicionando...' : 'Adicionar'}
         </button>
       </form>

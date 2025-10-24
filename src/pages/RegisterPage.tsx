@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import api from '../services/api';
 import { AxiosError } from 'axios';
+import { FiUserPlus } from 'react-icons/fi';
+
 
 const RegisterPage: React.FC = () => {
   const [username, setUsername] = useState('');
@@ -84,8 +86,9 @@ const RegisterPage: React.FC = () => {
         <button
           type="submit"
           disabled={isLoading || !!success}
-          className="btn btn-success"
+          className="btn btn-main"
         >
+          <FiUserPlus />
           {isLoading ? 'Registrando...' : 'Registrar'}
         </button>
 

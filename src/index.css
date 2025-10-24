@@ -5,12 +5,15 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url("./assets/blackGPT.jpeg");  
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  /* background-attachment: fixed;  */
 }
 
 body {
@@ -23,11 +26,12 @@ body {
 
 * {
   box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;    
 }
 
 #root {
   width: 100%;
-  max-width: 1280px;
+  max-width: 80%;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -45,6 +49,10 @@ body {
   border-radius: 8px;
   text-align: left;
   background-color: #2f2f2f;
+}
+
+.auth-container h2 {
+  color: #A100FF;      
 }
 
 .tasks-container {
@@ -66,7 +74,8 @@ body {
 }
 
 .header h1 {
-  margin: 0;
+    margin: 0;
+    font-size: 1.5em;
 }
 
 .header p {
@@ -96,7 +105,7 @@ body {
 .form-section {
   margin: 20px 0;
   padding: 20px;
-  background-color: #242424;
+  background-color: #1c1c1c;
   border-radius: 8px;
 }
 
@@ -143,6 +152,10 @@ input[type="password"] {
   border-radius: 8px;
   cursor: pointer;
   transition: border-color 0.25s, background-color 0.25s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
 .btn:disabled {
@@ -187,9 +200,16 @@ input[type="password"] {
   background-color: #5a6268;
 }
 
+.btn-main {
+  background-color: #A100FF;
+}
+.btn-main:hover:not(:disabled) {
+  background-color: #7500b9;
+}
+
 .btn-sm {
-  padding: 5px 8px;
-  font-size: 14px;
+    padding: 3px 10px;
+    font-size: 18px;
 }
 
 
@@ -201,11 +221,11 @@ input[type="password"] {
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #A100FF;
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: #7500b9;
 }
 
 .error-message {
@@ -266,11 +286,10 @@ a:hover {
 /* --- 7. Kanban Board --- */
 
 .kanban-board-container {
-  max-width: 1200px;
   margin: 20px auto;
   padding: 2rem;
   text-align: left;
-  background-color: #2f2f2f;
+  background-color: #141414;
   border: 1px solid #555;
   border-radius: 8px;
 }
@@ -278,15 +297,14 @@ a:hover {
 .kanban-board {
   display: flex;
   justify-content: space-between;
-  gap: 20px;
+  gap: 2vh;
   margin-top: 20px;
   overflow-x: auto;
 }
 
 .kanban-column {
-  width: 350px;
-  min-width: 300px;
-  background-color: #3a3a3a;
+  width: 32%;
+  background-color: #1c1c1c;
   border-radius: 8px;
   padding: 10px;
   display: flex;
@@ -294,7 +312,7 @@ a:hover {
 }
 
 .column-title {
-  font-size: 1.2em;
+  font-size: 1.3em;
   font-weight: bold;
   padding: 10px;
   margin-bottom: 10px;
@@ -305,36 +323,31 @@ a:hover {
 
 .column-droppable-area {
   padding: 8px;
-  background-color: #444;
-  border-radius: 4px;
+  /* background-color: #7b49c9; */
+  border-radius: 20px;
   min-height: 300px;
   flex-grow: 1;
   transition: background-color 0.2s ease;
+  background-image: linear-gradient(#6e00ff, #d800ff);
 }
 
 .column-dragging-over {
-  background-color: #535bf2;
+  background-color: #4b007c;
 }
 
 .kanban-card {
   user-select: none;
-  padding: 12px;
+  padding: 20px 12px;
   margin-bottom: 8px;
-  background-color: #2f2f2f;
+  background-color: #530d6b57;
   border: 1px solid #555;
-  border-radius: 4px;
+  border-radius: 20px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 10px;
   transition: background-color 0.2s ease;
-}
-
-.card-is-dragging {
-  background-color: #646cff;
-  transform: rotate(3deg);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
 .card-content {

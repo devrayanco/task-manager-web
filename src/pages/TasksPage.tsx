@@ -1,15 +1,13 @@
-// src/pages/TasksPage.tsx
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import api from '../services/api';
 import type { Task } from '../interfaces/task.interface';
 import type { OnDragEndResponder } from '@hello-pangea/dnd';
+import { FiLogOut } from 'react-icons/fi';
 
-// Importa os NOVOS componentes
 import CreateTaskForm from '../components/CreateTaskForm';
 import KanbanBoard from '../components/KanbanBoard';
 
-// --- Definimos os tipos de estado aqui, pois é a fonte da verdade ---
 interface Column {
   id: string;
   title: string;
@@ -172,10 +170,13 @@ const TasksPage: React.FC = () => {
     <div className="kanban-board-container">
       <header className="header">
         <div>
-          <h1>Minhas Tarefas (Kanban)</h1>
+          <h1>Minhas Tarefas</h1>
           <p>Bem-vindo, {authData?.username}!</p>
         </div>
-        <button onClick={logout} className="btn btn-danger">Sair</button>
+        <button onClick={logout} className="btn btn-danger">
+          <FiLogOut />
+          Sair
+        </button>
       </header>
 
       <main>
